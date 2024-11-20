@@ -2,7 +2,7 @@ let globeRotation = 0;
 let pulse = 0;
 
 function setup() {
-  createCanvas(600, 600, WEBGL); // Create a 3D canvas
+  createCanvas(300, 300, WEBGL); // Create a 3D canvas
   noFill();                      // No fill for the globe, just a grid
 }
 
