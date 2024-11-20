@@ -1,9 +1,9 @@
-let globeRotation = 0;
-let pulse = 0;
+let globeRotation = 0; // Initialize rotation angle
+let pulse = 0;         // Initialize pulse value for animation
 
 function setup() {
-  createCanvas(300, 300, WEBGL); // Create a 3D canvas
-  noFill();                      // No fill for the globe, just a grid
+  createCanvas(200, 200, WEBGL); // Create a 200x200 canvas
+  noFill();                      // Disable fill for the globe grid
 }
 
 function draw() {
@@ -11,11 +11,11 @@ function draw() {
   
   // Rotate the globe
   rotateY(globeRotation);
-  globeRotation += 0.01; // Incremental rotation for animation
-  
+  globeRotation += 0.008; // Slower rotation by 20%
+
   stroke(0);          // Black for the globe grid
   strokeWeight(0.5);  // Thin grid lines
-  sphere(150);        // Draw the globe
+  sphere(80);         // Smaller globe with radius 80
   
   // Add pins with animations
   drawPin(14.6, -86.9);  // Honduras (latitude, longitude)
@@ -33,7 +33,7 @@ function drawPin(lat, lon) {
   let latR = radians(-lat); // Flip latitude for p5.js coordinates
   let lonR = radians(lon);
   
-  let r = 200; // Radius of the globe
+  let r = 80; // Radius of the smaller globe
   
   // Calculate position of the pin
   let x = r * cos(latR) * sin(lonR);
@@ -43,15 +43,15 @@ function drawPin(lat, lon) {
   push();
   translate(x, y, z); // Move to the pin's position
   stroke(255, 0, 0);  // Red for the pin
-  strokeWeight(4);
-  line(0, 0, 0, 0, 0, -20); // A small pin pointing outwards
+  strokeWeight(3);    // Adjust pin size for smaller canvas
+  line(0, 0, 0, 0, 0, -10); // A small pin pointing outwards
   
   // Draw radiating circles
   stroke(255, 100, 100, 150); // Fading red for the circles
-  strokeWeight(2);
+  strokeWeight(1.5);
   noFill();
   for (let i = 1; i <= 3; i++) {
-    ellipse(0, 0, pulse * i % 30, pulse * i % 30); // Animated circles
+    ellipse(0, 0, pulse * i % 20, pulse * i % 20); // Smaller circles for smaller canvas
   }
   pop();
 }
