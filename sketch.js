@@ -4,10 +4,11 @@ let pulse = 0;         // Initialize pulse value for animation
 function setup() {
   createCanvas(200, 200, WEBGL); // Create a 200x200 canvas
   noFill();                      // Disable fill for the globe grid
+  clear();                       // Set the canvas to transparent
 }
 
 function draw() {
-  background(255); // White background
+  clear(); // Make the background transparent each frame
   
   // Rotate the globe
   rotateY(globeRotation);
@@ -24,7 +25,7 @@ function draw() {
   
   // Update pulse animation value
   pulse += 0.5;
-  if (pulse > 100) pulse = 0; // Reset pulse after it grows too large
+  if (pulse > 80) pulse = 0; // Reset pulse after it grows too large
 }
 
 // Function to draw a pin on the globe
@@ -43,15 +44,16 @@ function drawPin(lat, lon) {
   push();
   translate(x, y, z); // Move to the pin's position
   stroke(255, 0, 0);  // Red for the pin
-  strokeWeight(3);    // Adjust pin size for smaller canvas
-  line(0, 0, 0, 0, 0, -10); // A small pin pointing outwards
+  strokeWeight(2);    // Adjust pin size for smaller canvas
+  line(0, 0, 0, 0, 0, -6); // A small pin pointing outwards
   
-  // Draw radiating circles
+  // Draw radiating circles scaled to the smaller globe
   stroke(255, 100, 100, 150); // Fading red for the circles
-  strokeWeight(1.5);
+  strokeWeight(1.2);
   noFill();
   for (let i = 1; i <= 3; i++) {
-    ellipse(0, 0, pulse * i % 20, pulse * i % 20); // Smaller circles for smaller canvas
+    let size = (pulse * i % 10) + 2; // Scale down radiating circle sizes
+    ellipse(0, 0, size, size);       // Pulsing circles centered on the pin
   }
   pop();
 }
