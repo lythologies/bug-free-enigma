@@ -15,7 +15,7 @@ function draw() {
   
   stroke(0);          // Black for the globe grid
   strokeWeight(0.5);  // Thin grid lines
-  sphere(200);        // Draw the globe
+  sphere(150);        // Draw the globe
   
   // Add pins with animations
   drawPin(14.6, -86.9);  // Honduras (latitude, longitude)
